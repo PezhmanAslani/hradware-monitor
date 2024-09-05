@@ -31,7 +31,7 @@ public class SystemMetricsWebSocketHandler extends TextWebSocketHandler {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }, 0, 1, TimeUnit.SECONDS); // Send metrics every second
+        }, 0, 1, TimeUnit.SECONDS); 
     }
 
   
@@ -44,13 +44,12 @@ private String getCpuUsage() throws Exception {
     while ((line = reader.readLine()) != null) {
         output.append(line).append("\n");
     }
-    System.out.println("CPU Usage Output:\n" + output.toString()); // Debug output
+    System.out.println("CPU Usage Output:\n" + output.toString());
     
-    // Parse the output to get the CPU usage
     String[] lines = output.toString().split("\n");
     if (lines.length > 1) {
         String[] cpuUsageParts = lines[lines.length - 2].split("\\s+");
-        return (100 - Double.parseDouble(cpuUsageParts[cpuUsageParts.length - 1])) + "%"; // Return idle CPU usage inverted to show usage percentage
+        return (100 - Double.parseDouble(cpuUsageParts[cpuUsageParts.length - 1])) + "%"; 
     }
     return "N/A";
 }
@@ -77,7 +76,7 @@ private String getCpuUsage() throws Exception {
         while ((line = reader.readLine()) != null) {
             if (line.startsWith("/")) {
                 String[] parts = line.split("\\s+");
-                return parts[4]; // Percentage used
+                return parts[4]; 
             }
         }
         return "N/A";
